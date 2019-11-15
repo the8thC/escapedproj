@@ -6,8 +6,24 @@ public class MoventController : MonoBehaviour
 {
     public Animator animator;
     public bool walk;
+    public bool dance;
+
+    private void StartWalk()
+    {
+        walk = true;
+    }
+
+    private void StopWalk()
+    {
+        walk = false;
+    }
+
+    private void UpdateAnimator()
+    {
+        animator.SetBool("isWalking", walk);
+        animator.SetBool("isDansing", dance);
+    }
     
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -16,6 +32,6 @@ public class MoventController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isWalking", walk);
+        UpdateAnimator();
     }
 }
