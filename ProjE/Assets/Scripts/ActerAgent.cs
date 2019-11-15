@@ -24,16 +24,18 @@ public class ActerAgent : Agent
     public float speed;
 
     private bool isDone = false;
+
+    private float vectAction;
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         var controlSignal = Vector3.zero;
         controlSignal.x = vectorAction[0];
         controlSignal.z = vectorAction[1];
-        rBody.AddForce(controlSignal * speed);
+        rBody.position += controlSignal * speed / 100;
         
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
-
+        
         if (distanceToTarget <= 2)
         {
             isDone = true;
@@ -43,11 +45,19 @@ public class ActerAgent : Agent
         
     }
 
+    public override float[] Heuristic()
+    {
+        var action = new float[2];
+        action[0] = Input.GetAxis("Horizontal");
+        action[1] = Input.GetAxis("Vertical");
+        return action;
+    }
+
     public override void AgentReset()
     {
         if (isDone)
         {
-            transform.position = Vector3.zero;
+            transform.position = startPosition;
         }
         else
         {
