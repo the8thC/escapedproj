@@ -2,36 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using MLAgents;
+using Unity.Collections;
 using UnityEngine;
 
 public class ActerAgent : Agent
 {
-    public Rigidbody rBody;
+    //public Rigidbody rBody;
     public Transform target;
     private Vector3 startPosition;
-    
+    private MoventController _moventController;
 
     public override void CollectObservations()
     {
         AddVectorObs(target.position);
         AddVectorObs(transform.position);
-        
-        AddVectorObs(rBody.velocity.x);
-        AddVectorObs(rBody.velocity.z);
+
+        AddVectorObs(0);//rBody.velocity.x);
+        AddVectorObs(0);//rBody.velocity.z);
     }
 
-    [Range(0, 100)]
-    public float speed;
-
     private bool isDone = false;
+    public float MaxHP;
 
     private float vectAction;
+    [SerializeField]
+    private float hp;
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         var controlSignal = Vector3.zero;
         controlSignal.x = vectorAction[0];
         controlSignal.z = vectorAction[1];
-        rBody.position += controlSignal * speed / 100;
+        _moventController.MakeStep(controlSignal);
         
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
@@ -40,9 +41,21 @@ public class ActerAgent : Agent
         {
             isDone = true;
             SetReward(1.0f);
+            Debug.LogFormat("Saved: {0}", gameObject.name);
             Done();
         }
-        
+        else
+        {
+            SetReward(-0.001f);
+            hp -= 1;
+        }
+
+        if (hp <= 0)
+        {
+            SetReward(-1.0f);
+            Debug.LogFormat("Die: {0}", gameObject.name);
+            Done();
+        }
     }
 
     public override float[] Heuristic()
@@ -55,19 +68,14 @@ public class ActerAgent : Agent
 
     public override void AgentReset()
     {
-        if (isDone)
-        {
-            transform.position = startPosition;
-        }
-        else
-        {
-            isDone = false;
-        }
+        hp = MaxHP;
+        transform.position = startPosition;
     }
 
     private void Start()
     {
-        startPosition = Vector3.zero;
+        _moventController = GetComponent<MoventController>();
+        hp = MaxHP;
         var position = transform.position;
         startPosition.x = position.x;
         startPosition.y = position.y;
