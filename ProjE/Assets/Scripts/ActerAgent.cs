@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MLAgents;
 using Unity.Collections;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine;
 public class ActerAgent : Agent
 {
     //public Rigidbody rBody;
-    public Transform target;
+    private Vector3 _target;
     private Vector3 _startPosition;
     private MoventController _moventController;
     private RaySensor _raySensor;
@@ -18,7 +19,7 @@ public class ActerAgent : Agent
         //var rays = _raySensor.Detect(7);
         
         AddVectorObs(transform.position);
-        AddVectorObs(target.position);
+        AddVectorObs(_target);
 
 //        foreach (var ray in rays)
 //        {
@@ -40,7 +41,7 @@ public class ActerAgent : Agent
 
 
         // Rewards
-        float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
+        float distanceToTarget = Vector3.Distance(this.transform.position, _target);
         
         if (distanceToTarget <= 1.42f)
         {
@@ -76,6 +77,24 @@ public class ActerAgent : Agent
         transform.position = _startPosition;
     }
 
+    Vector3 GetNearest(exiter[] targets)
+    {
+        Vector3 min = Vector3.zero;
+        float minDist = float.MaxValue;
+        foreach (var targett in targets)
+        {
+            var target = targett.transform;
+            var dist = Vector3.Distance(target.position, _startPosition);
+            if (minDist > dist)
+            {
+                minDist = dist;
+                min = target.position;
+            }
+        }
+
+        return min;
+    }
+
     private void Start()
     {
         _moventController = GetComponent<MoventController>();
@@ -85,5 +104,8 @@ public class ActerAgent : Agent
         _startPosition.x = position.x;
         _startPosition.y = position.y;
         _startPosition.z = position.z;
+
+        var _targets = GameObject.FindObjectsOfType<exiter>();
+        _target = GetNearest(_targets);
     }
 }
