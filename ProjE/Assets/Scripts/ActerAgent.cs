@@ -13,20 +13,30 @@ public class ActerAgent : Agent
     private Vector3 _startPosition;
     private MoventController _moventController;
     private RaySensor _raySensor;
+    private exiter[] _targets;
 
+    private float FireDistance()
+    {
+        var fiers = FindObjectsOfType<FireVisualManager>();
+        if (fiers.Length == 0) return -1;
+        var minDist = fiers.Min(manager => Vector3.Distance(manager.transform.position, transform.position));
+        return minDist;
+    }
+    private float radius = 4;
     public override void CollectObservations()
     {
-        //var rays = _raySensor.Detect(7);
-        
         AddVectorObs(transform.position);
         AddVectorObs(_target);
 
-//        foreach (var ray in rays)
-//        {
-//            AddVectorObs(ray);
-//        }
+        var minDist = FireDistance();
+        
+        if (minDist <= radius)
+            AddVectorObs(1/minDist);
+        else
+            AddVectorObs(0);
     }
-    
+
+
     public float MaxHP;
 
     private float vectAction;
@@ -41,20 +51,31 @@ public class ActerAgent : Agent
 
 
         // Rewards
-        float distanceToTarget = Vector3.Distance(this.transform.position, _target);
-        
-        if (distanceToTarget <= 1.42f)
+        foreach (var target in _targets)
         {
-            SetReward(1.0f);
-            Debug.LogFormat("Saved: {0}", gameObject.name);
-            Done();
-        }
-        else
-        {
-            SetReward(-0.5f);
-            hp -= 0.01f;
+            float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);
+            if (distanceToTarget <= 1.2f && distanceToTarget >= 0)
+            {
+                SetReward(1.0f);
+                Debug.LogFormat("Saved: {0}", gameObject.name);
+                Done();
+            }
+            else
+            {
+                SetReward(-0.5f);
+                hp -= 0.01f;
+            }
         }
 
+        var fireDist = FireDistance();
+
+        if (fireDist <= 0.1 && fireDist >= 0)
+        {
+            SetReward(-1.0f);
+            Debug.LogFormat("Burn: {0}", gameObject.name);
+            Done();
+        }
+        
         if (hp <= 0)
         {
             SetReward(-1.0f);
@@ -73,6 +94,7 @@ public class ActerAgent : Agent
 
     public override void AgentReset()
     {
+        
         hp = MaxHP;
         transform.position = _startPosition;
     }
@@ -105,7 +127,7 @@ public class ActerAgent : Agent
         _startPosition.y = position.y;
         _startPosition.z = position.z;
 
-        var _targets = GameObject.FindObjectsOfType<exiter>();
+        _targets = GameObject.FindObjectsOfType<exiter>();
         _target = GetNearest(_targets);
     }
 }
