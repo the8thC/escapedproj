@@ -133,43 +133,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
         type: 3}
-      propertyPath: m_terrainTextures.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
       propertyPath: m_combustionRate
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_flammable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_fuelLowerValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_fuelHigherValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_HPLowerValue
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_HPHigherValue
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
-        type: 3}
-      propertyPath: m_terrainTextures.Array.data[0].m_firePropagationSpeed
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
         type: 3}
@@ -209,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
         type: 3}
       propertyPath: m_terrainTextures.Array.data[1].m_textureID
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000013635316820, guid: 81c0ebf3dd313d845bcbc5656a03cae4,
         type: 3}
