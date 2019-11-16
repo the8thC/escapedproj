@@ -28,6 +28,7 @@ TagManager:
   - symbol_O_Goal
   - symbol_X_Goal
   - Exit
+  - barrier
   layers:
   - Default
   - TransparentFX
