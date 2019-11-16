@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40042347}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 11.79, y: 1.46, z: -28.5}
+  m_LocalPosition: {x: 12.01, y: 1.46, z: -27.72}
   m_LocalScale: {x: 0.3194301, y: 2.24383, z: 10.084364}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114926893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.12, y: 1.46, z: -9.49}
+  m_LocalPosition: {x: -5.71, y: 1.46, z: -9.49}
   m_LocalScale: {x: 0.31943, y: 2.24383, z: 55.21889}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -452,7 +452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423557725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.86, y: 1.46, z: -1.6}
+  m_LocalPosition: {x: 38.8, y: 1.46, z: -1.6}
   m_LocalScale: {x: 0.31943, y: 2.24383, z: 39.6319}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -627,7 +627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554488429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.86, y: 1.46, z: -25.05}
+  m_LocalPosition: {x: 16.84, y: 1.46, z: -24.269997}
   m_LocalScale: {x: 0.31943, y: 2.24383, z: 7.0085716}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -942,7 +942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968350936}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 5, y: 1.46, z: -37.64}
+  m_LocalPosition: {x: 5, y: 1.46, z: -37.1}
   m_LocalScale: {x: 0.3194301, y: 2.24383, z: 22.45489}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -1274,6 +1274,12 @@ MonoBehaviour:
   animator: {fileID: 1395825463}
   walk: 0
   dance: 0
+  Speed: 0
+  GroundDistance: 0.2
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
+  animMultiplier: 0
 --- !u!54 &1395825465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1307,9 +1313,9 @@ MonoBehaviour:
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
-  rBody: {fileID: 1395825465}
   target: {fileID: 79750111}
-  speed: 10
+  MaxHP: 0
+  hp: 0
 --- !u!114 &1395825467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,8 +1379,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621022580}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 28.1, y: 1.46, z: -21.76}
-  m_LocalScale: {x: 0.3194301, y: 2.24383, z: 21.929132}
+  m_LocalPosition: {x: 27.91, y: 1.46, z: -21.02}
+  m_LocalScale: {x: 0.3194301, y: 2.24383, z: 22.080442}
   m_Children: []
   m_Father: {fileID: 958186886}
   m_RootOrder: 0

@@ -361,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96002298}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.15, y: 1.46, z: -15.09}
+  m_LocalPosition: {x: -0.3, y: 1.46, z: -14.99}
   m_LocalScale: {x: 0.3194301, y: 2.24383, z: 10.084353}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -820,7 +820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349680572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.94, y: 1.46, z: 0.65}
+  m_LocalPosition: {x: 24.94, y: 1.46, z: 0.42}
   m_LocalScale: {x: 0.31943, y: 2.24383, z: 29.77965}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -1851,7 +1851,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110643703}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 21.33, y: 1.46, z: 15.23}
+  m_LocalPosition: {x: 21.42, y: 1.46, z: 15.23}
   m_LocalScale: {x: 0.3194301, y: 2.24383, z: 7.2836337}
   m_Children: []
   m_Father: {fileID: 958186886}
@@ -2000,8 +2000,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384868770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.55, y: 1.46, z: -9.85}
-  m_LocalScale: {x: 0.31943, y: 2.24383, z: 9.522035}
+  m_LocalPosition: {x: 4.55, y: 1.46, z: -10.13}
+  m_LocalScale: {x: 0.31943, y: 2.24383, z: 10.00385}
   m_Children: []
   m_Father: {fileID: 958186886}
   m_RootOrder: 5
@@ -2092,6 +2092,12 @@ MonoBehaviour:
   animator: {fileID: 1395825463}
   walk: 0
   dance: 0
+  Speed: 0
+  GroundDistance: 0.2
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
+  animMultiplier: 0
 --- !u!54 &1395825465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2125,9 +2131,9 @@ MonoBehaviour:
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
-  rBody: {fileID: 1395825465}
   target: {fileID: 79750111}
-  speed: 10
+  MaxHP: 0
+  hp: 0
 --- !u!114 &1395825467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3117,17 +3123,11 @@ Transform:
   m_LocalPosition: {x: 12.117338, y: -12.595556, z: -11.061573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1954352283}
+  - {fileID: 2553008263887709038}
   - {fileID: 966487929}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1954352283 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2553008263018115062, guid: 718e200e73ec98943a5ab172b59f44ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2553008263887709037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2051103346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,8 +3247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059168563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.21, y: 1.46, z: 9.66}
-  m_LocalScale: {x: 0.31943, y: 2.24383, z: 9.596312}
+  m_LocalPosition: {x: 12.21, y: 1.46, z: 10.32}
+  m_LocalScale: {x: 0.31943, y: 2.24383, z: 10.918413}
   m_Children: []
   m_Father: {fileID: 958186886}
   m_RootOrder: 13
@@ -3411,11 +3411,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1894560708}
     m_Modifications:
-    - target: {fileID: 2553008263018115060, guid: 718e200e73ec98943a5ab172b59f44ee,
-        type: 3}
-      propertyPath: m_Name
-      value: Table
-      objectReference: {fileID: 0}
     - target: {fileID: 2553008263018115062, guid: 718e200e73ec98943a5ab172b59f44ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3471,5 +3466,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2553008263018115060, guid: 718e200e73ec98943a5ab172b59f44ee,
+        type: 3}
+      propertyPath: m_Name
+      value: Table
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 718e200e73ec98943a5ab172b59f44ee, type: 3}
+--- !u!4 &2553008263887709038 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 2553008263887709037}
+  m_PrefabAsset: {fileID: 0}
