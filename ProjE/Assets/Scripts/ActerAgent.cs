@@ -9,19 +9,23 @@ public class ActerAgent : Agent
 {
     //public Rigidbody rBody;
     public Transform target;
-    private Vector3 startPosition;
+    private Vector3 _startPosition;
     private MoventController _moventController;
+    private RaySensor _raySensor;
 
     public override void CollectObservations()
     {
-        AddVectorObs(target.position);
+        //var rays = _raySensor.Detect(7);
+        
         AddVectorObs(transform.position);
+        AddVectorObs(target.position);
 
-        AddVectorObs(0);//rBody.velocity.x);
-        AddVectorObs(0);//rBody.velocity.z);
+//        foreach (var ray in rays)
+//        {
+//            AddVectorObs(ray);
+//        }
     }
-
-    private bool isDone = false;
+    
     public float MaxHP;
 
     private float vectAction;
@@ -33,21 +37,21 @@ public class ActerAgent : Agent
         controlSignal.x = vectorAction[0];
         controlSignal.z = vectorAction[1];
         _moventController.MakeStep(controlSignal);
-        
+
+
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
         
-        if (distanceToTarget <= 2)
+        if (distanceToTarget <= 1.42f)
         {
-            isDone = true;
             SetReward(1.0f);
             Debug.LogFormat("Saved: {0}", gameObject.name);
             Done();
         }
         else
         {
-            SetReward(-0.001f);
-            hp -= 1;
+            SetReward(-0.5f);
+            hp -= 0.01f;
         }
 
         if (hp <= 0)
@@ -69,16 +73,17 @@ public class ActerAgent : Agent
     public override void AgentReset()
     {
         hp = MaxHP;
-        transform.position = startPosition;
+        transform.position = _startPosition;
     }
 
     private void Start()
     {
         _moventController = GetComponent<MoventController>();
+        _raySensor = GetComponent<RaySensor>();
         hp = MaxHP;
         var position = transform.position;
-        startPosition.x = position.x;
-        startPosition.y = position.y;
-        startPosition.z = position.z;
+        _startPosition.x = position.x;
+        _startPosition.y = position.y;
+        _startPosition.z = position.z;
     }
 }

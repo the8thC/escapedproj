@@ -57,7 +57,6 @@ public class MoventController : MonoBehaviour
         {
             StartWalk();
             _rigidbody.MovePosition(_rigidbody.position + Time.fixedDeltaTime * Speed * _inputs);
-            Debug.Log(_inputs);
             _rigidbody.MoveRotation(Quaternion.LookRotation(_inputs));
         }
         else
