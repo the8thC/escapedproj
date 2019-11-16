@@ -54,7 +54,7 @@ public class ActerAgent : Agent
         foreach (var target in _targets)
         {
             float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);
-            if (distanceToTarget <= 1.2f && distanceToTarget >= 0)
+            if (distanceToTarget <= 2f && distanceToTarget >= 0)
             {
                 SetReward(1.0f);
                 Debug.LogFormat("Saved: {0}", gameObject.name);
